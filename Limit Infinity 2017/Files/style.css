@@ -1,0 +1,40 @@
+#top-heading
+{
+  font-family: Merriweather;
+  text-align:center;
+  font-size:180%;
+  font-weight: lighter;
+  color: #a1a1a1;
+}
+
+.count
+{
+  font-family: ‘Merriweather’, Georgia, serif;
+  text-align:center;
+  font-size:390%;
+  font-weight:600;
+}
+
+#q
+{
+  font-family: Palatino, "Palatino Linotype", serif;
+  text-align: center;
+  font-size: 230%;
+}
+
+#modalText
+{
+  font-family: Merriweather;
+  text-align:center;
+  font-size:200%;
+  font-weight: 300;
+}
+
+#q-count
+{
+  color: orange;
+}
+
+*:focus {
+    outline: 0 !important;
+}

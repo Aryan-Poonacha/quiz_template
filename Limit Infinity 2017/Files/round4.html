@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Limit Infinity Quiz</title>
+
+    <meta charset="utf-8">
+    <meta author="Aryan Poonacha">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="http://fonts.googleapis.com/css?family=Merriweather&#8217" rel=’stylesheet’ type=’text/css’>
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+
+  var questions1 =
+  [
+    "Wall built to limit the movement of sediment carried by long shore currents",
+
+    "Mass of ice moving through valley",
+
+    "Loosely compacted wind blown sediment",
+
+    "Granular ice formed by the recrystallization of snow",
+
+    "Landscape formed by action of ground water on soluble rocks",
+
+    "Dark part of soil from the decay of organic matter",
+
+    "Bar of rock, sand, coral or similar material, lying beneath the surface of water",
+
+    "Foreign rock inclusion in igneous rock",
+
+    "Middle part of Mesozoic Era",
+
+    "A natural open space underground, commonly caused by the dissolution of soluble rocks, generally limestone"
+  ];
+
+  var answers1 =
+  [
+    "Groin",
+    "Glacier",
+    "Loess",
+    "Neve",
+    "Karst",
+    "Humus",
+    "Reef",
+    "Xenolith",
+    "Jurassic",
+    "Cave"
+  ];
+var q_counter = 0;
+var wrong_counter = 0;
+var correct_counter = 0;
+var round = 1;
+
+      function timeIncrement(mins)
+      {
+        mins -=1;
+        var secs = 59;
+        $("#timer").html(mins+":"+secs);
+        var timercheck = setInterval( function()
+      {
+        secs -=1;
+        $("#timer").html(mins+":"+secs);
+        if(secs<10)
+        {
+          $("#timer").html(mins+":0"+secs);
+        }
+        if(secs < 0)
+        {
+          mins -= 1;
+          secs = 59;
+          $("#timer").html(mins+":"+secs);
+        }
+        if(mins == -1)
+        {
+          clearInterval(timercheck);
+          $("#timer").html("00:00");
+          end();
+        }
+      }, 999);
+      }
+
+      function end()
+      {
+        $('#myModal').modal('show');
+        $("#modalText").html("Final Score: " + correct_counter+"/"+("questions"+round.toString()).length);
+      }
+
+      function redirect()
+      {
+        window.location.replace('round5.html');
+      }
+
+      $(document).ready(function()
+      {
+        $("#timer").click(function()
+        {
+          timeIncrement(10); //input mins here
+        });
+
+        $("#q").html(questions1[q_counter]);
+        $("#q-count").html(questions1.length);
+        $("#score").html(correct_counter+"/"+questions1.length);
+
+        $("button").click(function()
+        {
+
+          var btn_id = $(this).attr("id");
+
+          var chosen = $("#"+btn_id).html();
+          if(answers1[q_counter] === chosen)
+          {
+            $("#"+btn_id).css({"background-color" : "#5CB85C", "color" : "white"});
+            correct_counter +=1;
+            $("#correct-count").html(correct_counter);
+            $("#score").html(correct_counter+"/"+questions1.length);
+          }
+          else if((answers1[q_counter] != chosen))
+            {
+              $("#"+btn_id).css({"background-color" : "#d9534F"});
+              setTimeout(function()
+              {
+                $("#"+btn_id).css({"background-color" : "#FFFFFF"});
+              }, 400);
+
+              wrong_counter +=1;
+              $("#wrong-count").html(wrong_counter);
+            }
+
+         q_counter+=1;
+         $("#q").html(questions1[q_counter]);
+         $("#q-count").html((questions1.length)-(q_counter));
+         if(q_counter == 10)
+         {
+           end();
+         }
+        });
+      });
+</script>
+  </head>
+  <body>
+    <div class="container-fluid">
+      <br>
+    <div class="row">
+      <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+        <div class = "well well-md">
+        <p id="top-heading">QUESTIONS</p>
+        <p class="count" id="q-count">20</p>
+      </div>
+    </div>
+
+      <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+        <div class = "well well-md">
+        <p id="top-heading">CORRECT</p>
+        <p class="count" id="correct-count">0</p>
+      </div>
+    </div>
+
+      <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+        <div class = "well well-md">
+        <p id="top-heading">WRONG</p>
+        <p class="count" id="wrong-count">0</p>
+      </div>
+    </div>
+
+      <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+        <div class = "well well-md">
+        <p id="top-heading">SCORE</p>
+        <p class="count" id="score">0/20</p>
+      </div>
+    </div>
+
+      <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+        <div class = "well well-md">
+        <p id="top-heading">TIMER</p>
+        <p class="count" id="timer">10:00</p>
+      </div>
+    </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="well well-lg">
+          <p id="q">INSERT question here!</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="well well-lg">
+    <div class="row">
+      <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+        <button id="option1" class="btn btn-default btn-lg">Reef</button>
+      </div>
+
+      <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+        <button id="option2" class="btn btn-default btn-lg">Groin</button>
+      </div>
+
+      <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+        <button id="option3" class="btn btn-default btn-lg">Xenolith</button>
+      </div>
+
+      <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+        <button id="option4" class="btn btn-default btn-lg">Glacier</button>
+      </div>
+
+      <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+        <button id="option5" class="btn btn-default btn-lg">Humus</button>
+      </div>
+
+      <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+        <button id="option6" class="btn btn-default btn-lg">Neve</button>
+      </div>
+    </div>
+
+<br>
+
+    <div class="row">
+      <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+        <button id="option7" class="btn btn-default btn-lg">Cave</button>
+      </div>
+
+      <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+        <button id="option8" class="btn btn-default btn-lg">Rock</button>
+      </div>
+
+      <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+        <button id="option9" class="btn btn-default btn-lg">Karst</button>
+      </div>
+
+      <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+        <button id="option10" class="btn btn-default btn-lg">Jurassic</button>
+      </div>
+
+      <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+        <button id="option11" class="btn btn-default btn-lg">Halite</button>
+      </div>
+
+      <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+        <button id="option12" class="btn btn-default btn-lg">Loess</button>
+      </div>
+    </div>
+</div>
+</div>
+
+<<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Round Complete!</h4>
+      </div>
+      <div class="modal-body">
+        <p id="modalText"></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default disabled">Made By Aryan Poonacha</button>
+      </div>
+    </div>
+
+  </div>
+</div>
